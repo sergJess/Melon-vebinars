@@ -1,11 +1,18 @@
-// 'use strict'
 import Swiper, { Navigation } from 'swiper';
-import Splide from '@splidejs/splide';
 const burger = document.querySelector('.burger');
 const mobileLinks = document.querySelector('.menu-nav');
 burger.addEventListener('click', (e)=>{
     burger.classList.toggle('open');
     mobileLinks.classList.toggle('nav-links-animation');
+});
+Swiper.use([Navigation]);
+const swiper = new Swiper('.cust-slider', {
+    loop : true,
+    wrapperClass: 'cust-track',
+    navigation: {
+        nextEl: '.swe',
+        prevEl: '.btnsw',
+      },
 });
 
 
@@ -166,29 +173,28 @@ popupServicesContainer.append(closePopup, popupContent);
 }
 const [popupServices, popupServicesContainer, popupServicesWordFirst, popupServicesWordSecond, popupTitle, popupText, popupSubtitle, popupLoad, imgPopupClose, sliderInner] = createPopUp();
 document.body.append(popupServices);
-function createSlider(title, arrayImages, arrayHref, sliderClassName, buttonNextClass, buttonPrevClass,sliderWrapperClass, ){
+function createSlider(title, arrayImages, arrayHref, sliderClassName, buttonNextClass, buttonPrevClass,sliderWrapperClass, swiperConfig){
     const wrapper = document.createElement('div');
+    wrapper.classList.add('slider-inner');
     const sliderTitle = document.createElement('p');
     sliderTitle.classList.add('popup-services__subtitle');
     sliderTitle.textContent = title;
     const slider = document.createElement('div');
-    slider.classList.add('popup-services__images', `${sliderClassName}`, 'splide');
+    slider.classList.add('popup-services__images', `${sliderClassName}`, );
     const sliderWrapper = document.createElement('div');
-    sliderWrapper.classList.add(`${sliderWrapperClass}`, 'splide__track');
+    sliderWrapper.classList.add(`${sliderWrapperClass}`, );
     const buttonPrev = document.createElement('button');
     buttonPrev.style.display = 'block';
     buttonPrev.setAttribute('type', 'button');
-    buttonPrev.classList.add('slick-button', 'splide__arrow', 'splide__arrow--prev', `${buttonPrevClass}`);
+    buttonPrev.classList.add('slider-button', `${buttonPrevClass}`, 'slider-button__right');
     const buttonPrevImg = document.createElement('img');
     buttonPrevImg.src = 'https://melon.su/wp-content/themes/melon/images/Icon_left_outline.svg';
     buttonPrevImg.setAttribute('alt', 'prev arrow');
     buttonPrev.append(buttonPrevImg);
-    const splideList = document.createElement('ul');
-    splideList.classList.add('splide__list');
-    sliderWrapper.append(splideList);
-for(let i = 0; i < arrayImages.length; i++){
-    const div = document.createElement('li');
-    div.classList.add('splide__slide');
+   
+for (let i = 0; i < arrayImages.length; i++){
+    const div = document.createElement('div');
+    div.classList.add('swiper-slide', 'slide');
     const link = document.createElement('a');
     link.classList.add('popup-services__i');
     link.setAttribute('href', `${arrayHref[i]}`);
@@ -197,20 +203,20 @@ for(let i = 0; i < arrayImages.length; i++){
     img.setAttribute('alt', 'picture slide');
     link.append(img);
     div.append(link);
-    splideList.append(div);
+    sliderWrapper.append(div);
 }
 
 const buttonNext = document.createElement('button');
 buttonNext.setAttribute('type', 'button');
-buttonNext.classList.add('slick-button', 'splide__arrow', 'splide__arrow--next', `${buttonNextClass}`);
+buttonNext.classList.add('slider-button', `${buttonNextClass}`, 'slider-button__left');
 buttonNext.style.display = 'block';
 const buttonNextImg = document.createElement('img');
 buttonNextImg.src = 'https://melon.su/wp-content/themes/melon/images/Icon_right_outline.svg';
 buttonNextImg.setAttribute('alt', 'next arrow');
 buttonNext.append(buttonNextImg);
 
-slider.append(sliderWrapper, buttonPrev, buttonNext);
-wrapper.append(sliderTitle, slider);
+slider.append(sliderWrapper);
+wrapper.append(sliderTitle, slider, buttonPrev, buttonNext);
 return wrapper;
 }
 const firstSliderImg = ['https://melon.su/wp-content/uploads/2021/01/11116-1.jpg',
@@ -219,10 +225,10 @@ const firstSliderHref = ['https://melon.su/wp-content/uploads/2021/01/perezagruz
 
 const sliderFirst = createSlider('Примеры работ', firstSliderImg, firstSliderHref, 'slider-creative-solutions','first-slider-next', 'first-slider-prev','slider-creative-solutions-wrapper' ,{
     modules: [ Navigation],
-    slidesPerView: 1,
+    slidesPerView: 3,
     wrapperClass:'slider-creative-solutions-wrapper',
     loop: true,
-    spaceBetween: 50,
+    spaceBetween: 20,
     preloadImages: true,
     navigation: {
       nextEl: '.first-slider-next',
@@ -244,26 +250,18 @@ if(e.target.classList.contains('submenu__link-popup') && e.target.getAttribute('
     console.log(sliderInner);
     removeNodeChildren(sliderInner);
     sliderInner.append(sliderFirst);
-    // const swiper = new Swiper('.slider-creative-solutions', {
-    //     modules: [ Navigation],
-    //     slidesPerView: 1,
-    //     wrapperClass:'slider-creative-solutions-wrapper',
-    //     loop: true,
-    //     spaceBetween: 0,
-    //     navigation: {
-    //       nextEl: '.first-slider-next',
-    //       prevEl: '.first-slider-prev',
-    //     },
-    // });
-const splide = new Splide('.slider-creative-solutions', {
-    classes: {
-		type   : 'loop',
-        perPage: 3,
-		prev  : 'splide__arrow--prev first-slider-prev',
-		next  : 'splide__arrow--next first-slider-next',
-  },
-});
-splide.mount();
+   const swiperX = new Swiper('.slider-creative-solutions', {
+    modules: [ Navigation],
+    slidesPerView: 3,
+    wrapperClass:'slider-creative-solutions-wrapper',
+    loop: true,
+    spaceBetween: 20,
+    preloadImages: true,
+    navigation: {
+      nextEl: '.first-slider-next',
+      prevEl: '.first-slider-prev',
+    },
+})
 }
 }); 
 
