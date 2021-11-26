@@ -14,14 +14,14 @@
      transition-property: transform;
      box-sizing: content-box;
  }
- .slide{
+ .slider-slide{
    flex-shrink: 0;
 //    width: 100%;
 //    height: 100%;
    position: relative;
    transition-property: transform;
  }
- .slider-inner{
+ .slider-container{
      position: relative;
      padding: 0 22px;
  }

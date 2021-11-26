@@ -175,7 +175,7 @@ const [popupServices, popupServicesContainer, popupServicesWordFirst, popupServi
 document.body.append(popupServices);
 function createSlider(title, arrayImages, arrayHref, sliderClassName, buttonNextClass, buttonPrevClass,sliderWrapperClass, swiperConfig){
     const wrapper = document.createElement('div');
-    wrapper.classList.add('slider-inner');
+    wrapper.classList.add('slider-container');
     const sliderTitle = document.createElement('p');
     sliderTitle.classList.add('popup-services__subtitle');
     sliderTitle.textContent = title;
@@ -194,7 +194,7 @@ function createSlider(title, arrayImages, arrayHref, sliderClassName, buttonNext
    
 for (let i = 0; i < arrayImages.length; i++){
     const div = document.createElement('div');
-    div.classList.add('swiper-slide', 'slide');
+    div.classList.add('swiper-slide', 'slider-container');
     const link = document.createElement('a');
     link.classList.add('popup-services__i');
     link.setAttribute('href', `${arrayHref[i]}`);
@@ -225,7 +225,7 @@ const firstSliderHref = ['https://melon.su/wp-content/uploads/2021/01/perezagruz
 
 const sliderFirst = createSlider('Примеры работ', firstSliderImg, firstSliderHref, 'slider-creative-solutions','first-slider-next', 'first-slider-prev','slider-creative-solutions-wrapper' ,{
     modules: [ Navigation],
-    slidesPerView: 3,
+    slidesPerView: 1,
     wrapperClass:'slider-creative-solutions-wrapper',
     loop: true,
     spaceBetween: 20,
@@ -234,6 +234,12 @@ const sliderFirst = createSlider('Примеры работ', firstSliderImg, fi
       nextEl: '.first-slider-next',
       prevEl: '.first-slider-prev',
     },
+    breakpoints: {
+        640: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          }
+    }
 });
 
 
@@ -247,20 +253,25 @@ if(e.target.classList.contains('submenu__link-popup') && e.target.getAttribute('
     popupServicesWordSecond.textContent = 'Решения';
     popupTitle.textContent = 'Креативные Решения';
     popupText.textContent = 'Задача организации, в особенности же начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки форм развития.';
-    console.log(sliderInner);
     removeNodeChildren(sliderInner);
     sliderInner.append(sliderFirst);
    const swiperX = new Swiper('.slider-creative-solutions', {
     modules: [ Navigation],
-    slidesPerView: 3,
+    slidesPerView: 1,
     wrapperClass:'slider-creative-solutions-wrapper',
     loop: true,
-    spaceBetween: 20,
+    spaceBetween: 10,
     preloadImages: true,
     navigation: {
       nextEl: '.first-slider-next',
       prevEl: '.first-slider-prev',
     },
+    breakpoints: {
+        640: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          }
+    }
 })
 }
 }); 
