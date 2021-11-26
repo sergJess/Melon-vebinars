@@ -1,0 +1,175 @@
+.vebinars-title{
+    @include font(6rem, 7.2rem, 700);
+    text-transform: uppercase;
+    color:$Font-dark-2;
+}
+.vebinars-cards{
+    padding: 8.7rem 0 0 0;
+    display: grid;
+    grid-template-columns:31.5% 31.5% 31.5%;
+    gap: 6rem 3.7%;
+    width: 100%;
+}
+.vebinar__card{
+    @extend %relative;
+    overflow-x: hidden;
+    background-color: $Gray-bg-2;
+    color: #000;
+}
+.vebinar__card-padding{
+    padding: 2rem 1rem 3rem 2.1rem;
+}
+.vebinar__card-special{
+    padding: 2rem 3rem 3rem 2.1rem;
+}
+.card-image{
+    align-self: flex-end;
+}
+.vebinar__card::before{
+    @extend %pseudo-elem;
+    top: 1.9rem;
+    left: 0;
+    width: 1.2%;
+    height: 3rem;
+    background-color: $Font-red;
+}
+.vebinar-title{
+    @include font(2.1rem, 2.8rem, 700);
+}
+.card__inner{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 0.8rem;
+}
+.card-text{
+    max-width: 80%;
+    @include font(2rem, 2.4rem, 700);
+    color: $Font-snow;
+}
+.vebinar-date{
+    @extend %relative;
+    margin: 5.8rem 0 6.2rem 0;
+    @include font(2.2rem, 2.4rem, 400);
+    padding-left: 1rem;
+}
+.vebinar-date::before{
+    @extend %pseudo-elem;
+    top: 0;
+    left:0;
+    width: 0.2rem;
+    height: 100%;
+    background-color: $Font-dark-2;
+}
+.vebinar-date__text_colored{
+    font-size: calc(1em - 2px);
+    color: $Font-red;
+}
+
+.vebinar-btn{
+    color: $Font-snow;
+    outline: none;
+}
+.vebinar-btn_actual{
+    padding: 1rem 1rem 1rem 1rem;
+    @include font(1.6rem, 1.9rem, 300);
+    letter-spacing:3px;
+    background-color: $Font-dark-2;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.vebinar-btn_expired{
+    @include font(1.8rem, 2.1rem, 700);
+    letter-spacing:0;
+    background-color: transparent;
+}
+
+.vebinar-btn-bg{
+    display:inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 1rem;
+}
+.vebinar-btn-bg_actual{
+    width: 13px;
+    height: 13px;
+    background-image: url('../assets/images/cards/signUp.svg');
+    cursor: pointer;
+}
+.vebinar-btn-bg_expired{
+    position: relative;
+    transform: translateY(10%);
+    width: 25px;
+    height: 15px;
+    background-image: url('../assets/images/cards/expired.svg');
+    
+}
+
+@media(max-width:1610px){
+    .container {
+        padding: 3rem 3rem 3rem 5rem;
+    }
+    .container::before {
+        width: 2%;
+    }
+    .vebinars-cards {
+        padding: 7.7rem 0 0 0;
+        gap: 4rem 1.4%;
+    }
+
+}
+@media(max-width: 1350px){
+    .vebinars-cards{
+        justify-content: center;
+        grid-template-columns: 38% 38%;
+    }
+    .vebinars-title{
+        text-align: center;
+    }
+}
+    @media(max-width: 1010px){
+        .card__inner{
+            flex-direction: column;
+            row-gap:10px;
+        }
+        .card-image {
+            align-self:center;
+        }
+        .vebinar-date {
+            margin: 2.8rem 0 1.2rem 0;
+            font-size: 2rem;
+            line-height: 2.2rem;
+        }
+    }
+    @media(max-width: 680px){
+        .vebinars-cards{
+            grid-template-columns: 90%;
+        }
+    }
+    @media(max-width: 500px){
+        .vebinars-cards{
+            padding: 2rem 0 0 0;
+            grid-template-columns: 100%;
+        }
+        .vebinars-title {
+            font-size: 3.8rem;
+            line-height: 4.6rem;
+            
+        }
+        .container {
+            padding: 4.8rem 2rem 1rem 2rem;
+        }
+        .card-text{
+            max-width: 100%;
+        }
+    }
+
+    .slider-creative-solutions{
+        max-width:500px;
+        overflow-x: hidden;
+    }
+    .slider-creative-solutions-wrapper{
+        display: flex;
+    }
+    .popup-services__i{
+        display: block;
+    }

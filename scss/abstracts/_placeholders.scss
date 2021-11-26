@@ -1,0 +1,24 @@
+%flex{
+  display: flex;
+}
+%flex-wrap{
+  flex-wrap: wrap;
+}
+%relative{
+  position: relative;
+}
+%pseudo-elem{
+  content: '';
+  position: absolute;
+}
+%bg-image{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+%letter-spacing{
+  letter-spacing:1%;
+}
+%blood-border{
+  border-bottom: 2.5rem solid $Font-red; 
+}

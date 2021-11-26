@@ -1,0 +1,27 @@
+.logo{
+  @include font(8.8rem, 8.8rem, 300);
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: right;
+  color: $Font-snow;
+}
+.logo-text{
+  @extend %relative;
+  top:-15px;
+  left: 6px;
+  letter-spacing:-2px;
+}
+@media(max-width:1000px){
+  .logo-text{
+    @include font(5.4rem, 6rem, 300);
+  }
+  
+}
+@media(max-width:600px){
+  .logo-text{
+    @include font(2.5rem, 4.4rem, 300);
+    letter-spacing: -1px;
+  }
+  .logo{
+    height: 70px;
+  }
+}

@@ -1,0 +1,5 @@
+.column{
+  @extend %flex;
+  flex-direction: column;
+  
+}
