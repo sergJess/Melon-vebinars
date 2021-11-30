@@ -1,4 +1,6 @@
 import Swiper, { Navigation } from 'swiper';
+import createPopUp from './popup';
+import createSlider from './slider-menu';
 const burger = document.querySelector('.burger');
 const mobileLinks = document.querySelector('.menu-nav');
 burger.addEventListener('click', (e)=>{
@@ -6,16 +8,6 @@ burger.addEventListener('click', (e)=>{
     mobileLinks.classList.toggle('nav-links-animation');
 });
 Swiper.use([Navigation]);
-const swiper = new Swiper('.cust-slider', {
-    loop : true,
-    wrapperClass: 'cust-track',
-    navigation: {
-        nextEl: '.swe',
-        prevEl: '.btnsw',
-      },
-});
-
-
 // menu- top
 const subMenuParent = document.querySelector('.nav-submenu-parent');
 const subMenu = document.querySelector('.nav-submenu');
@@ -27,12 +19,11 @@ subMenu.style.top = `${SubMenuTop}px`;
 document.body.addEventListener('mouseover',(e)=>{
     if(e.target.classList.contains('nav-submenu-parent') || e.target.classList.contains('nav-submenu') || e.target.classList.contains('submenu__link_drop')||e.target.classList.contains('submenu__link')){
         subMenu.classList.add('nav-menu-show');
-    
+
         if(e.target.classList.contains('submenu__link')){
             e.target.classList.add('submenu__link_active');
         }
         else{
-            
             subMenuLinks.forEach(item=>{
                 item.classList.remove('submenu__link_active');
             })
@@ -40,10 +31,7 @@ document.body.addEventListener('mouseover',(e)=>{
     }
     else{
         subMenu.classList.remove('nav-menu-show');
-        
-  
     }
-    
 });
 
 //vebinars
@@ -122,129 +110,14 @@ document.body.addEventListener('click',(e)=>{
 });
 
 //popup
-function createPopUp (){
-    const popupServices = document.createElement('div');
-    popupServices.classList.add('popup-services');
-    const popupServicesContainer = document.createElement('div');
-    popupServicesContainer.classList.add('popup-services__container');
-const closePopup = document.createElement('div');
-closePopup.classList.add('popup-services__close');
-const imgPopupClose = document.createElement('img');
-imgPopupClose.src = "https://melon.su/wp-content/themes/melon/images/modal_close.svg";
-imgPopupClose.setAttribute('alt', 'close');
-const popupContent = document.createElement('div');
-popupContent.classList.add('popup-services__content');
-const popupTopImageInner = document.createElement('div');
-popupTopImageInner.classList.add('popup-services__img-top');
-const popupTopImage = document.createElement('img');
-popupTopImage.classList.add('ls-is-cached', 'lazyLoaded');
-popupTopImage.src = 'https://melon.su/wp-content/themes/melon/images/pop_img1.svg';
-popupTopImage.setAttribute('alt', 'img top');
-const popupLoad = document.createElement('div');
-popupLoad.classList.add('popup-services__load');
-const popupServicesWordFirst = document.createElement('div');
-popupServicesWordFirst.classList.add('popup-services__word', 'popup-services__word1');
-const popupServicesWordSecond = document.createElement('div');
-popupServicesWordSecond.classList.add('popup-services__word', 'popup-services__word2');
-const popupTitle = document.createElement('h2');
-popupTitle.classList.add('popup-services__title');
-const popupText = document.createElement('p');
-popupText.classList.add('popup-services__description');
-const popupSubtitle = document.createElement('p');
-popupSubtitle.classList.add('"popup-services__example-title');
-const popupButtomImageInner = document.createElement('div');
-popupButtomImageInner.classList.add('popup-services__img-bottom');
-const popupButtomImage = document.createElement('img');
-popupButtomImage.src = 'https://melon.su/wp-content/themes/melon/images/pop_img2.svg'
-popupButtomImage.classList.add('lazyLoaded');
-const sliderInner = document.createElement('div');
-sliderInner.classList.add('slider-inner');
-popupButtomImageInner.append(popupButtomImage);
-popupLoad.append(popupServicesWordFirst, popupServicesWordSecond, popupTitle, popupText, popupSubtitle, sliderInner);
-
-popupTopImageInner.append(popupTopImage);
-popupContent.append(popupTopImageInner, popupLoad, popupButtomImageInner);
-
-closePopup.append(imgPopupClose);
-popupServicesContainer.append(closePopup, popupContent);
-    popupServices.append(popupServicesContainer);
-
-    return [popupServices, popupServicesContainer, popupServicesWordFirst, popupServicesWordSecond, popupTitle, popupText, popupSubtitle, popupLoad, imgPopupClose, sliderInner];
-}
 const [popupServices, popupServicesContainer, popupServicesWordFirst, popupServicesWordSecond, popupTitle, popupText, popupSubtitle, popupLoad, imgPopupClose, sliderInner] = createPopUp();
 document.body.append(popupServices);
-function createSlider(title, arrayImages, arrayHref, sliderClassName, buttonNextClass, buttonPrevClass,sliderWrapperClass, swiperConfig){
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('slider-container');
-    const sliderTitle = document.createElement('p');
-    sliderTitle.classList.add('popup-services__subtitle');
-    sliderTitle.textContent = title;
-    const slider = document.createElement('div');
-    slider.classList.add('popup-services__images', `${sliderClassName}`, );
-    const sliderWrapper = document.createElement('div');
-    sliderWrapper.classList.add(`${sliderWrapperClass}`, );
-    const buttonPrev = document.createElement('button');
-    buttonPrev.style.display = 'block';
-    buttonPrev.setAttribute('type', 'button');
-    buttonPrev.classList.add('slider-button', `${buttonPrevClass}`, 'slider-button__right');
-    const buttonPrevImg = document.createElement('img');
-    buttonPrevImg.src = 'https://melon.su/wp-content/themes/melon/images/Icon_left_outline.svg';
-    buttonPrevImg.setAttribute('alt', 'prev arrow');
-    buttonPrev.append(buttonPrevImg);
-   
-for (let i = 0; i < arrayImages.length; i++){
-    const div = document.createElement('div');
-    div.classList.add('swiper-slide', 'slider-container');
-    const link = document.createElement('a');
-    link.classList.add('popup-services__i');
-    link.setAttribute('href', `${arrayHref[i]}`);
-    const img  = document.createElement('img');
-    img.setAttribute('src', `${arrayImages[i]}`);
-    img.setAttribute('alt', 'picture slide');
-    link.append(img);
-    div.append(link);
-    sliderWrapper.append(div);
-}
 
-const buttonNext = document.createElement('button');
-buttonNext.setAttribute('type', 'button');
-buttonNext.classList.add('slider-button', `${buttonNextClass}`, 'slider-button__left');
-buttonNext.style.display = 'block';
-const buttonNextImg = document.createElement('img');
-buttonNextImg.src = 'https://melon.su/wp-content/themes/melon/images/Icon_right_outline.svg';
-buttonNextImg.setAttribute('alt', 'next arrow');
-buttonNext.append(buttonNextImg);
-
-slider.append(sliderWrapper);
-wrapper.append(sliderTitle, slider, buttonPrev, buttonNext);
-return wrapper;
-}
 const firstSliderImg = ['https://melon.su/wp-content/uploads/2021/01/11116-1.jpg',
 'https://melon.su/wp-content/uploads/2021/02/111223366-3.jpg', 'https://melon.su/wp-content/uploads/2021/01/11114.jpg', 'https://melon.su/wp-content/uploads/2021/01/11117.jpg'];
 const firstSliderHref = ['https://melon.su/wp-content/uploads/2021/01/perezagruzka-roskosmos.pdf', 'https://melon.su/wp-content/uploads/2021/02/jpg2pdf-24.pdf', 'https://melon.su/wp-content/uploads/2021/01/pops.pdf', 'https://melon.su/wp-content/uploads/2021/02/polezhim_compressed-1.pdf'];
 
-const sliderFirst = createSlider('Примеры работ', firstSliderImg, firstSliderHref, 'slider-creative-solutions','first-slider-next', 'first-slider-prev','slider-creative-solutions-wrapper' ,{
-    modules: [ Navigation],
-    slidesPerView: 1,
-    wrapperClass:'slider-creative-solutions-wrapper',
-    loop: true,
-    spaceBetween: 20,
-    preloadImages: true,
-    navigation: {
-      nextEl: '.first-slider-next',
-      prevEl: '.first-slider-prev',
-    },
-    breakpoints: {
-        640: {
-            slidesPerView: 3,
-            spaceBetween: 20
-          }
-    }
-});
-
-
-
-
+const sliderFirst = createSlider('Примеры работ', firstSliderImg, firstSliderHref, 'slider-creative-solutions','first-slider-next', 'first-slider-prev','slider-creative-solutions-wrapper');
 
 subMenu.addEventListener('click', (e)=>{
 if(e.target.classList.contains('submenu__link-popup') && e.target.getAttribute('data-popup-link') == '1'){
