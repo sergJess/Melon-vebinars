@@ -133,16 +133,24 @@ if(e.target.classList.contains('submenu__link-popup') && e.target.getAttribute('
     slidesPerView: 1,
     wrapperClass:'slider-creative-solutions-wrapper',
     loop: true,
-    spaceBetween: 10,
+    spaceBetween: 20,
     preloadImages: true,
     navigation: {
       nextEl: '.first-slider-next',
       prevEl: '.first-slider-prev',
     },
     breakpoints: {
+        500: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
         640: {
+            slidesPerView: 2,
+            spaceBetween: 28
+          },
+          1300: {
             slidesPerView: 3,
-            spaceBetween: 20
+            spaceBetween: 40
           }
     }
 })

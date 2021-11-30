@@ -26,6 +26,7 @@ for (let i = 0; i < arrayImages.length; i++){
 	const img  = document.createElement('img');
 	img.setAttribute('src', `${arrayImages[i]}`);
 	img.setAttribute('alt', 'picture slide');
+	img.classList.add('slider__menu-img');
 	link.append(img);
 	div.append(link);
 	sliderWrapper.append(div);
